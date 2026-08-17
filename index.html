@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" id="theme-color" content="#FAFAFA" />
+    <meta name="description" content="Aryaman Bhattacharjee — AI Developer, Python Developer and Generative AI enthusiast building intelligent software with Python, Streamlit and Google Gemini. AI applications, Machine Learning, EdTech and FinTech projects." />
+    <meta name="keywords" content="Aryaman Bhattacharjee, AI Developer, Python Developer, Generative AI, Machine Learning, Prompt Engineering, Streamlit, Google Gemini, Portfolio, EdTech, FinTech, Software Development" />
+    <meta property="og:title" content="Aryaman Bhattacharjee — AI Developer & Python Developer" />
+    <meta property="og:description" content="Building intelligent software solutions that solve real-world problems through AI, automation and data-driven insights." />
+    <meta property="og:image" content="/profile.jpeg" />
+    <meta property="og:type" content="website" />
+    <title>Aryaman Bhattacharjee — AI Developer &amp; Python Developer</title>
+
+    <!-- Apply the persisted/system theme before first paint to avoid a light-mode flash.
+         Must mirror the logic in src/context/ThemeContext.jsx (getInitialTheme). -->
+    <script>
+      ;(function () {
+        try {
+          var stored = localStorage.getItem('ab-theme')
+          var dark =
+            stored === 'dark' ||
+            (stored !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+          document.documentElement.classList.toggle('dark', dark)
+          var meta = document.getElementById('theme-color')
+          if (meta) meta.setAttribute('content', dark ? '#0A0A0C' : '#FAFAFA')
+        } catch {
+          /* localStorage unavailable — fall back to the default light theme */
+        }
+      })()
+    </script>
+
+    <!-- Opt out of the browser's native scroll restoration as early as possible
+         (inline, before the deferred bundle runs) so a reload always starts at
+         the top instead of wherever the visitor last scrolled. -->
+    <script>
+      if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'manual'
+      }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

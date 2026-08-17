@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Accent colour variables — overwritten on every page load by
+   applyRandomAccent() in src/data/accentPalettes.js. These emerald
+   defaults are just a fallback if that script ever fails to run. */
+:root {
+  --accent: 4 120 87;
+  --accent-dark: 52 211 153;
+}
+
+@layer base {
+  * {
+    @apply border-border dark:border-border-dark;
+  }
+
+  html {
+    /* scroll-behavior is deliberately NOT set here: every scroll in the
+       app already passes an explicit `behavior` (smooth or instant) in
+       JS, and Chromium's CSS-level smooth scrolling is a known cause of
+       wheel/gesture scrolls feeling accelerated. Native wheel scrolling
+       keeps its default feel. */
+    /* On laptops and up, scale the whole design up ~1.33x (16px × 1.33 ≈
+       21.33px). Every Tailwind size is rem-based, so this mimics the look
+       of the site at 133% browser zoom without forcing the visitor's zoom
+       — wider content column, larger text, same proportions. Below 1280px
+       (tablets, phones) the base stays 16px so the mobile layout is
+       unchanged. */
+    font-size: 16px;
+  }
+
+  @media (min-width: 1280px) {
+    html {
+      font-size: 21.33px;
+    }
+  }
+
+  body {
+    @apply bg-bg dark:bg-bg-dark text-ink dark:text-ink-dark font-body antialiased;
+    transition: background-color 0.35s ease, color 0.35s ease;
+    /* Text is not selectable anywhere on the site — except inputs/textareas
+       (see below) so the contact form stays usable. */
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  input, textarea {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-ink dark:text-ink-dark;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background-color: rgb(var(--accent));
+    color: #FFFFFF;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #D1D5DB;
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    background-color: #35353b;
+  }
+
+  /* Keyboard focus visibility */
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  .container-px {
+    @apply px-6 sm:px-8 lg:px-12;
+  }
+
+  /* Opt back into text selection where it's useful (e.g. contact details),
+     overriding the global user-select: none on body. */
+  .selectable {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+
+  .section-py {
+    @apply py-24 sm:py-28 lg:py-32;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom cursor: hide the native pointer while the custom cursor is active */
+@media (pointer: fine) {
+  .custom-cursor,
+  .custom-cursor * {
+    cursor: none !important;
+  }
+}
