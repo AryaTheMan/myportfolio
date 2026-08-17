@@ -21,7 +21,7 @@ if ('scrollRestoration' in window.history) {
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/myportfolio">
         <App />
       </BrowserRouter>
     </ThemeProvider>

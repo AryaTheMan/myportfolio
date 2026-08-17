@@ -124,7 +124,7 @@ export default function Hero() {
         >
           <div className="relative">
             <img
-              src="/profile.jpeg"
+              src={`${import.meta.env.BASE_URL}profile.jpeg`}
               alt="Aryaman Bhattacharjee — portrait"
               width={280}
               height={280}
